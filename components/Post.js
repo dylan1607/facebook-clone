@@ -2,6 +2,9 @@ import Image from "next/image";
 import { ThumbUpIcon, ChatAltIcon, ShareIcon } from "@heroicons/react/outline";
 
 const Post = ({ name, message, email, image, postImage, timestamp }) => {
+  const myLoader = () => {
+    return `${postImage}`;
+  };
   return (
     <div className="flex flex-col">
       <div className="bg-white p-5 mt-5 rounded-t-2xl shadow-md">
@@ -24,8 +27,14 @@ const Post = ({ name, message, email, image, postImage, timestamp }) => {
         <p className="pt-4">{message}</p>
       </div>
       {postImage && (
-        <div className="h-56 md:h-96 bg-white">
-          {/* <Image alt="" src={postImage} layout="fill" objectFit="cover" /> */}
+        <div className="relative h-56 md:h-96 bg-white">
+          <Image
+            alt=""
+            src={postImage}
+            layout="fill"
+            objectFit="contain"
+            loader={myLoader}
+          />
 
           {/* <img className="object-fill" src={postImage} alt="" /> */}
         </div>
